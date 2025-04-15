@@ -12,6 +12,7 @@ torchvision = ">= 0.20.1"
 torchaudio = ">= 2.5.1"
 matplotlib = ">= 3.10"
 pandas = ">= 2.2"
+datasets = ">= 3.2.0"
 
 [build-system]
 requires = ["poetry-core"]
