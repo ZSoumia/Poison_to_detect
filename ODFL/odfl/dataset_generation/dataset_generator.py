@@ -1,6 +1,7 @@
-from collections.abc import Any
+from typing import Any
 
 import datasets
+import torchvision
 import numpy as np
 import pandas as pd
 
@@ -24,7 +25,7 @@ def dirchlet_from_hg(
     # Creating dirchlet matrix for sampling (each vector is a draw from Dir(\alpha))
     d_matrix = create_dirchlet_matrix(
         alpha=alpha,
-        agents=agents,
+        size=agents,
         k=dataset.features['label'].num_classes
     )
     # Calculating average size of the sample 
@@ -48,14 +49,13 @@ def dirchlet_from_hg(
         if list_format:
             nodes_data.append([agent_data['train'], agent_data['test']])
         else:
-            nodes_data[agent] = {}
-            nodes_data[agent]['train'] = agent_data['train']
-            nodes_data[agent]['test'] = agent_data['test']
+            nodes_data[f"node_{agent}_train"] = agent_data['train']
+            nodes_data[f"node_{agent}_test"] = agent_data['test']
     return nodes_data
 
 
 def dirchlet_from_torch(
-    dataset: datasets.utils.datasets.Dataset,
+    dataset: torchvision.datasets,
     agents: int,
     alpha: float = 0.5,
     seed: int = 42,
