@@ -1,6 +1,6 @@
 - [ ] Prepare scripts for generating datasets.
     - [x] MNIST [MZ]
-    - [ ] CIFAR10 [MZ]
+    - [x] CIFAR10 [MZ]
     - [ ] PATHMNIST [MZ]
     - [ ] TINYIMAGENET [MZ]
     - [ ] YELP [SOUMIA]
