@@ -1,0 +1,20 @@
+- [ ] Prepare scripts for generating datasets.
+    - [x] MNIST [MZ]
+    - [ ] CIFAR10 [MZ]
+    - [ ] PATHMNIST [MZ]
+    - [ ] TINYIMAGENET [MZ]
+    - [ ] YELP [SOUMIA]
+    - [ ] AG NEWS [SOUMIA]
+    - [ ] IMDB [SOUMIA]
+- [ ] Train and evaluate models for each dataset.
+    - [ ] MNIST [MZ]
+    - [ ] CIFAR10 [MZ]
+    - [ ] PATHMNIST [MZ]
+    - [ ] TINYIMAGENET [MZ]
+    - [ ] YELP [SOUMIA]
+    - [ ] AG NEWS [SOUMIA]
+    - [ ] IMDB [SOUMIA]
+-----------------------------------------------------------------------------------------
+- [ ] Deploy the datasets and centralised models in a specified environment [MZ + SOUMIA]
+- [ ] Add boilerplate Federated code [MZ].
+- [ ] Transfer code from the paper to the boilerplate code.
