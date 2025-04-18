@@ -31,7 +31,11 @@ def dirchlet_from_hg(
     # Calculating average size of the sample 
     avg_size = int(np.floor(dataset.num_rows / agents))
     # Creating Pandas Dataframe of samples (useful for sampling)
-    pandas_df = dataset.to_pandas().drop('image', axis=1)
+    #pandas_df = dataset.to_pandas().drop('image', axis=1)
+    pandas_df = dataset.to_pandas()
+    if 'image' in pandas_df.columns:
+        pandas_df = pandas_df.drop('image', axis=1)
+
     # Data format for storing data of all nodes.
     if list_format:
         nodes_data = []

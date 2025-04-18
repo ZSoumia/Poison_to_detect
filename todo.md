@@ -2,7 +2,7 @@
     - [x] MNIST [MZ]
     - [x] CIFAR10 [MZ]
     - [ ] PATHMNIST [MZ]
-    - [ ] TINYIMAGENET [MZ]
+    - [X] TINYIMAGENET [MZ]
     - [ ] YELP [SOUMIA]
     - [ ] AG NEWS [SOUMIA]
     - [ ] IMDB [SOUMIA]
