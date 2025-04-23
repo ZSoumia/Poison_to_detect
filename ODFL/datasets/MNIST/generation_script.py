@@ -4,7 +4,8 @@ import datasets
 from datasets import load_dataset
 
 from odfl.dataset_generation.dataset_generator import dirchlet_from_hg
-from odfl.dataset_generation.utils import save_custom_dataset
+from odfl.dataset_generation.utils import save_custom_dataset, save_blueprint
+
 
 def generate_mnist(
     agents: int,
@@ -34,6 +35,12 @@ def generate_mnist(
         path = (os.path.join(os.getcwd(), 'decentralised', 'MNIST')),
         dataset = data_split
         )
+    save_blueprint(
+        path = (os.path.join(os.getcwd(), 'decentralised', 'MNIST')),
+        dataset = data_split,
+        blueprint_name='MNIST_SPLIT',
+        number_of_clients=agents
+    )
 
 
 if __name__ == "__main__":
