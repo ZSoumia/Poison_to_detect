@@ -1,11 +1,11 @@
-- [ ] Prepare scripts for generating datasets.
+- [X] Prepare scripts for generating datasets.
     - [x] MNIST [MZ]
     - [x] CIFAR10 [MZ]
-    - [ ] PATHMNIST [MZ]
+    - [X] PATHMNIST [MZ]
     - [X] TINYIMAGENET [MZ]
-    - [ ] YELP [SOUMIA]
-    - [ ] AG NEWS [SOUMIA]
-    - [ ] IMDB [SOUMIA]
+    - [X] YELP [SOUMIA]
+    - [X] AG NEWS [SOUMIA]
+    - [X] DPMedia [SOUMIA]
 - [ ] Train and evaluate models for each dataset.
     - [ ] MNIST [MZ]
     - [ ] CIFAR10 [MZ]
