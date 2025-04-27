@@ -29,7 +29,8 @@ def train_loop(
     model: torch.nn, 
     loss_fn: torch.nn, 
     optimizer: torch.optim, 
-    device: torch.device
+    device: torch.device,
+    scheduler: torch.optim.lr_scheduler = None
     ):
     losses = []
     model.train()
@@ -50,6 +51,8 @@ def train_loop(
         losses.append(loss.item())
         loss.backward()
         optimizer.step()
+        if scheduler:
+            scheduler.step()
 
     # Checking the norm of the gradients at the final epoch
     total_length = 0
