@@ -141,7 +141,7 @@ def launch_centralised_mnist(
         writer.writeheader()
     
     #  ---------------------- Phase VI: training and validation ----------------------
-    for epoch in range(80):
+    for epoch in range(iterations):
         print(('-'*WIDTH).center(WIDTH))
         print(f'EPOCH {epoch}'.center(WIDTH))
         training_results = train_loop(train_loader, model, loss_fn, optimizer, device=device, scheduler=scheduler_object)
@@ -171,7 +171,7 @@ def launch_centralised_mnist(
     #  ---------------------- Phase VI: training and validation ----------------------
     final_test_results = test_loop(test_loader, model, loss_fn, device=device)
     final_test_results['iteration'] = epoch
-    with open(final_test_results, 'w+') as file:
+    with open(testing_metrics_file, 'w+') as file:
         writer = csv.DictWriter(file, fieldnames=testing_header)
         writer.writeheader()
         writer.writerow(final_test_results)
