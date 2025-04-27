@@ -3,9 +3,11 @@ import csv
 import time
 import json
 import shutil
+import random
 
 import datasets
 import torch
+import numpy as np
 
 from odfl.centralised_training.training_utils import train_loop, test_loop, transform_func
 
@@ -13,6 +15,10 @@ from odfl.centralised_training.training_utils import train_loop, test_loop, tran
 WIDTH = shutil.get_terminal_size().columns
 DATASET_PATH = ''
 RESULTS_PATH = ''
+# RANDOM SEEDS
+torch.manual_seed(42)
+np.random.seed(42)
+random.seed(42)
 def launch_centralised_mnist(
     lr: float,
     iterations: float,
