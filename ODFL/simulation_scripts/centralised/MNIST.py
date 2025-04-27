@@ -24,7 +24,7 @@ def launch_centralised_mnist(
     weight_decay: float = 0,
     scheduler: bool = False,
     scheduler_rounds: list = None,
-    scheduler_betas: list = None
+    scheduler_gamma: float = None
 ):
     """
     Train a centralized MNIST model with configurable optimizer and optional learning rate scheduler.
@@ -45,7 +45,7 @@ def launch_centralised_mnist(
         scheduler (bool, optional): Whether to use a learning rate scheduler. Defaults to False.
         scheduler_rounds (list, optional): List of training rounds (epochs) at which to adjust the learning rate. 
                                            Required if `scheduler` is True.
-        scheduler_betas (list, optional): List of multiplicative factors (betas) for adjusting the learning rate at specified rounds.
+        scheduler_betas (float): A multiplicative factor (gamma) for adjusting the learning rate at specified rounds.
                                           Required if `scheduler` is True.
 
     Returns:
@@ -84,7 +84,7 @@ def launch_centralised_mnist(
         "weight_decay": weight_decay,
         "scheduler": scheduler,
         "scheduler_rounds": scheduler_rounds,
-        "scheduler_betas": scheduler_betas
+        "scheduler_betas": scheduler_gamma
     }
     with open(configuration_file, "w+") as f:
         json.dump(training_configuration, f, indent=4)
@@ -116,6 +116,10 @@ def launch_centralised_mnist(
     model = None
     loss_fn = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=lr, momentum=momentum, dampening=dampening, weight_decay=weight_decay, nesterov=nesterov)
+    if scheduler:
+        scheduler_object = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=scheduler_rounds, gamma=scheduler_gamma)
+    else:
+        scheduler_object = None
     
     # ---------------------- Phase V: csv file formating----------------------
     training_header = ['iteration', 'loss', 'gradients_norm', 'weights_norm']
@@ -134,7 +138,7 @@ def launch_centralised_mnist(
     for epoch in range(80):
         print(('-'*WIDTH).center(WIDTH))
         print(f'EPOCH {epoch}'.center(WIDTH))
-        training_results = train_loop(train_loader, model, loss_fn, optimizer, device=device)
+        training_results = train_loop(train_loader, model, loss_fn, optimizer, device=device, scheduler=scheduler_object)
         validation_results = test_loop(validation_loader, model, loss_fn, device=device)
         results_packed = {
             'iteration': epoch,
